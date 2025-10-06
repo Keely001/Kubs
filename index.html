@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wakili AI - Your AI Legal Assistant in Kenya</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #1a365d;
+        --secondary: #2d5aa0;
+        --accent: #e53e3e;
+        --light: #f7fafc;
+        --dark: #2d3748;
+        --gray: #718096;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header & Navigation */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo i {
+        color: var(--primary);
+        font-size: 24px;
+      }
+
+      .logo-text {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      .cta-button {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .cta-button:hover {
+        background-color: #c53030;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 150px 0 100px;
+        background: linear-gradient(rgba(26, 54, 93, 0.5), rgba(45, 90, 160, 0.5)), url('wakili.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .secondary-button {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .secondary-button:hover {
+        background-color: white;
+        color: var(--primary);
+      }
+
+      /* Problem Section */
+      .problem-section {
+        padding: 100px 0;
+        background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('wakili.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+      }
+
+      .section-title p {
+        color: var(--gray);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .problem-card {
+        background-color: var(--light);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .problem-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .problem-card i {
+        font-size: 40px;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+
+      .problem-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--primary);
+      }
+
+      /* Solution Section */
+      .solution-section {
+        padding: 100px 0;
+        background-color: #f0f4f8;
+      }
+
+      .solution-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .solution-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .solution-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .solution-card i {
+        font-size: 40px;
+        color: var(--secondary);
+        margin-bottom: 20px;
+      }
+
+      .solution-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--primary);
+      }
+
+      /* Users Section */
+      .users-section {
+        padding: 100px 0;
+        background-color: white;
+      }
+
+      .users-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .user-card {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 10px;
+        background-color: var(--light);
+        transition: transform 0.3s;
+      }
+
+      .user-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .user-icon {
+        width: 80px;
+        height: 80px;
+        background-color: var(--secondary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+
+      .user-icon i {
+        font-size: 30px;
+        color: white;
+      }
+
+      .user-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+
+      /* AWS Section */
+      .aws-section {
+        padding: 100px 0;
+        background-color: #f0f4f8;
+      }
+
+      .aws-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .aws-logo {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 150px;
+      }
+
+      .aws-logo i {
+        font-size: 40px;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .aws-logo span {
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 0;
+        background: linear-gradient(rgba(26, 54, 93, 0.5), rgba(45, 90, 160, 0.5)), url('wakili.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-section p {
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column ul li a {
+        color: #a0aec0;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-column ul li a:hover {
+        color: white;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #4a5568;
+        color: #a0aec0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .nav-links {
+          gap: 15px;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <i class="fas fa-balance-scale"></i>
+            <span class="logo-text">Wakili AI</span>
+          </div>
+          <div class="nav-links">
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#users">Users</a>
+            <a href="#aws">Technology</a>
+          </div>
+          <button class="cta-button">Get Early Access</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>AI-Powered Legal Assistance for Kenya</h1>
+        <p>
+          Access accurate legal information, research, and guidance instantly
+          with our AI legal assistant trained on Kenyan law.
+        </p>
+        <div class="hero-buttons">
+          <button class="cta-button">Try Wakili AI Free</button>
+          <button class="secondary-button">Watch Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>The Legal Access Problem in Kenya</h2>
+          <p>
+            Legal services in Kenya are often expensive, slow, and inaccessible
+            to the average citizen or small business.
+          </p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-card">
+            <i class="fas fa-money-bill-wave"></i>
+            <h3>Expensive Services</h3>
+            <p>
+              Legal consultations and services are often priced beyond what
+              average Kenyans can afford, creating a justice gap.
+            </p>
+          </div>
+          <div class="problem-card">
+            <i class="fas fa-clock"></i>
+            <h3>Time-Consuming Research</h3>
+            <p>
+              Traditional legal research requires combing through complex
+              legislation and case law, taking hours or days.
+            </p>
+          </div>
+          <div class="problem-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Geographic Barriers</h3>
+            <p>
+              Quality legal services are concentrated in urban centers, leaving
+              rural populations underserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>How Wakili AI Solves These Challenges</h2>
+          <p>
+            Our AI-powered platform makes legal information accessible,
+            affordable, and understandable for everyone.
+          </p>
+        </div>
+        <div class="solution-grid">
+          <div class="solution-card">
+            <i class="fas fa-robot"></i>
+            <h3>AI Legal Assistant</h3>
+            <p>
+              Chat with our AI assistant to get accurate, context-aware answers
+              to your legal questions in plain English or Swahili.
+            </p>
+          </div>
+          <div class="solution-card">
+            <i class="fas fa-search"></i>
+            <h3>Instant Document Search</h3>
+            <p>
+              Search across thousands of legal documents, case law, and
+              legislation in seconds instead of hours.
+            </p>
+          </div>
+          <div class="solution-card">
+            <i class="fas fa-file-contract"></i>
+            <h3>Contract & Compliance Support</h3>
+            <p>
+              Get help with contract reviews, compliance checks, and legal form
+              preparation for your business.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users Section -->
+    <section id="users" class="users-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Who Benefits from Wakili AI</h2>
+          <p>
+            Our platform serves a diverse range of users across Kenya's legal
+            ecosystem.
+          </p>
+        </div>
+        <div class="users-grid">
+          <div class="user-card">
+            <div class="user-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <h3>Individuals</h3>
+            <p>Seeking basic legal guidance for personal matters</p>
+          </div>
+          <div class="user-card">
+            <div class="user-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3>SMEs</h3>
+            <p>Needing affordable compliance and contract support</p>
+          </div>
+          <div class="user-card">
+            <div class="user-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Law Students</h3>
+            <p>Accelerating legal research and study</p>
+          </div>
+          <div class="user-card">
+            <div class="user-icon">
+              <i class="fas fa-gavel"></i>
+            </div>
+            <h3>Lawyers</h3>
+            <p>Saving time on legal research and document review</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWS Section -->
+    <section id="aws" class="aws-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Powered by AWS Technology</h2>
+          <p>
+            Built on secure, scalable AWS services to deliver reliable legal
+            assistance.
+          </p>
+        </div>
+        <div class="aws-logos">
+          <div class="aws-logo">
+            <i class="fas fa-file-alt"></i>
+            <span>Amazon Textract</span>
+          </div>
+          <div class="aws-logo">
+            <i class="fas fa-brain"></i>
+            <span>Amazon Comprehend</span>
+          </div>
+          <div class="aws-logo">
+            <i class="fas fa-comments"></i>
+            <span>Amazon Bedrock</span>
+          </div>
+          <div class="aws-logo">
+            <i class="fas fa-search"></i>
+            <span>Amazon OpenSearch</span>
+          </div>
+          <div class="aws-logo">
+            <i class="fas fa-database"></i>
+            <span>Amazon S3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Transform Your Legal Experience?</h2>
+        <p>
+          Join the waitlist for early access to Wakili AI and be among the first
+          to experience AI-powered legal assistance in Kenya.
+        </p>
+        <button class="cta-button">Join Waitlist Now</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Wakili AI</h3>
+            <p>
+              Making legal services accessible, affordable, and efficient for
+              all Kenyans through AI technology.
+            </p>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#problem">The Problem</a></li>
+              <li><a href="#solution">Our Solution</a></li>
+              <li><a href="#users">For Users</a></li>
+              <li><a href="#aws">Technology</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Data Security</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact</h3>
+            <ul>
+              <li>
+                <a href="mailto:info@wakili-ai.com">info@wakili-ai.com</a>
+              </li>
+              <li><a href="#">Nairobi, Kenya</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2023 Wakili AI. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Simple form submission for buttons (would be connected to backend in production)
+      document
+        .querySelectorAll(".cta-button, .secondary-button")
+        .forEach((button) => {
+          button.addEventListener("click", function () {
+            if (
+              this.textContent.includes("Access") ||
+              this.textContent.includes("Waitlist")
+            ) {
+              alert(
+                "Thank you for your interest! The Wakili AI platform is currently in development. We will notify you when it launches."
+              );
+            } else if (this.textContent.includes("Demo")) {
+              alert(
+                "The demo video will be available soon. Please check back later."
+              );
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
