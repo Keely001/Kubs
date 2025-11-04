@@ -17,12 +17,12 @@ spec:
           image: mongo:3.6.5-jessie
 
           volumeMounts:
-            - name: mongodb-persistent-storage
+            - name: mongo-persistent-storage
               mountPath: /data/db
       volumes:
-        - name: mongodb-persistent-storage
+        - name: mongo-persistent-storage
           persistentVolumeClaim:
-            claimName: mongodb-pvc
+            claimName: mongo-pvc
 
 ---
 kind: Service
